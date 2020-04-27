@@ -8,45 +8,34 @@
 
         // objects array
         this.myBooks = [
-            { ID: '1', Title: 'Computer Architecture', Started: 'January', Pages: 125 },
-            { ID: '2', Title: 'Asp.Net 4 Blue Book', Started: 'February', Pages: 56},
-            { ID: '3', Title: 'Popular Science', Started: 'April', Pages: 210 }
+            { ID: '1', Title: 'The Hobbit', Started: 'January', Pages: 125 , Rating: 5},
+            { ID: '2', Title: 'War and Peace', Started: 'February', Pages: 56, Rating: 5},
+            { ID: '3', Title: 'The Great Gatsby', Started: 'April', Pages: 210, Rating: 5 }
         ]
 
         this.category = ['January', 'February', 'March', 'April', 'May', 'June','July','August','September', 'October','November','December'];
-        this.empty = [];
+        this.header = ['ID', 'Title', 'Started', 'Pages', 'Rating'];
 
-        this.createTable = function () {
-
-            // table header
-            for (let i = 0; i < this.myBooks.length; i++) {
-                for (let key in this.myBooks[i]) {
-                    if (this.empty.indexOf(key) === -1) {
-                        this.empty.push(key);
-                    }
-                }
-            }
-
-            // CREATE A TABLE.
+              // CREATE A TABLE.
+            this.createTable = function () {
             const table = document.createElement('table');
             table.setAttribute('id', 'booksTable'); 
 
             let tr = table.insertRow();               // CREATE A ROW (FOR HEADER).
-
-            for (let h = 0; h < this.empty.length; h++) {
+            for (let h = 0; h < this.header.length; h++) {
                 let th = document.createElement('th');
-                th.innerHTML = this.empty[h];
+                th.innerHTML = this.header[h];
                 tr.appendChild(th);
             }
 
             // ADD ROWS
             for (var i = 0; i < this.myBooks.length; i++) {
 
-                tr = table.insertRow(-1);           // CREATE A NEW ROW.
+                tr = table.insertRow();           // CREATE A NEW ROW.
 
-                for (var j = 0; j < this.empty.length; j++) {
-                    var tabCell = tr.insertCell(-1);
-                    tabCell.innerHTML = this.myBooks[i][this.empty[j]];
+                for (var j = 0; j < this.header.length; j++) {
+                    var tabCell = tr.insertCell();
+                    tabCell.innerHTML = this.myBooks[i][this.header[j]];
                 }
 
                 // DYNAMICALLY CREATE AND ADD ELEMENTS TO TABLE CELLS WITH EVENTS.
@@ -101,7 +90,7 @@
 
             tr = table.insertRow(-1);           // CREATE THE LAST ROW.
 
-            for (var j = 0; j < this.empty.length; j++) {
+            for (var j = 0; j < this.header.length; j++) {
                 var newCell = tr.insertCell(-1);
                 if (j >= 1) {
 
@@ -161,9 +150,9 @@
 
             var tab = document.getElementById('booksTable').rows[activeRow];
 
-            for (i = 0; i < this.empty.length; i++) {
+            for (i = 0; i < this.header.length; i++) {
                 var td = tab.getElementsByTagName("td")[i];
-                td.innerHTML = this.myBooks[(activeRow - 1)][this.empty[i]];
+                td.innerHTML = this.myBooks[(activeRow - 1)][this.header[i]];
             }
         }
 
@@ -220,10 +209,10 @@
             var tab = document.getElementById('booksTable').rows[activeRow];
 
             // UPDATE myBooks ARRAY WITH VALUES.
-            for (i = 1; i < this.empty.length; i++) {
+            for (i = 1; i < this.header.length; i++) {
                 var td = tab.getElementsByTagName("td")[i];
                 if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') {  // CHECK IF ELEMENT IS A TEXTBOX OR SELECT.
-                    this.myBooks[(activeRow - 1)][this.empty[i]] = td.childNodes[0].value;      // SAVE THE VALUE.
+                    this.myBooks[(activeRow - 1)][this.header[i]] = td.childNodes[0].value;      // SAVE THE VALUE.
                 }
             }
             this.createTable();     // REFRESH THE TABLE.
@@ -236,12 +225,12 @@
             var obj = {};
 
             // ADD NEW VALUE TO myBooks ARRAY.
-            for (i = 1; i < this.empty.length; i++) {
+            for (i = 1; i < this.header.length; i++) {
                 var td = tab.getElementsByTagName("td")[i];
                 if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') {      // CHECK IF ELEMENT IS A TEXTBOX OR SELECT.
                     var txtVal = td.childNodes[0].value;
                     if (txtVal != '') {
-                        obj[this.empty[i]] = txtVal.trim();
+                        obj[this.header[i]] = txtVal.trim();
                     }
                     else {
                         obj = '';
@@ -250,9 +239,9 @@
                     }
                 }
             }
-            obj[this.empty[0]] = this.myBooks.length + 1;     // NEW ID.
+            obj[this.header[0]] = this.myBooks.length + 1;     // NEW ID.
 
-            if (Object.keys(obj).length > 0) {      // CHECK IF OBJECT IS NOT EMPTY.
+            if (Object.keys(obj).length > 0) {      // CHECK IF OBJECT IS NOT header.
                 this.myBooks.push(obj);             // PUSH (ADD) DATA TO THE JSON ARRAY.
                 this.createTable();                 // REFRESH THE TABLE.
             }
