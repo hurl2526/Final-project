@@ -8,46 +8,45 @@
 
         // objects array
         this.myBooks = [
-            { ID: '1', Book_Name: 'Computer Architecture', Month_Started: 'Computers', Pages: 125 },
-            { ID: '2', Book_Name: 'Asp.Net 4 Blue Book', Month_Started: 'Programming', Pages: 56},
-            { ID: '3', Book_Name: 'Popular Science', Month_Started: 'Science', Pages: 210 }
+            { ID: '1', Title: 'Computer Architecture', Started: 'January', Pages: 125 },
+            { ID: '2', Title: 'Asp.Net 4 Blue Book', Started: 'February', Pages: 56},
+            { ID: '3', Title: 'Popular Science', Started: 'April', Pages: 210 }
         ]
 
         this.category = ['January', 'February', 'March', 'April', 'May', 'June','July','August','September', 'October','November','December'];
-        this.col = [];
+        this.empty = [];
 
         this.createTable = function () {
 
-            // EXTRACT VALUE FOR TABLE HEADER.
+            // table header
             for (let i = 0; i < this.myBooks.length; i++) {
                 for (let key in this.myBooks[i]) {
-                    if (this.col.indexOf(key) === -1) {
-                        this.col.push(key);
+                    if (this.empty.indexOf(key) === -1) {
+                        this.empty.push(key);
                     }
                 }
             }
 
             // CREATE A TABLE.
-            var table = document.createElement('table');
-            table.setAttribute('id', 'booksTable');     // SET TABLE ID.
+            const table = document.createElement('table');
+            table.setAttribute('id', 'booksTable'); 
 
-            var tr = table.insertRow(-1);               // CREATE A ROW (FOR HEADER).
+            let tr = table.insertRow();               // CREATE A ROW (FOR HEADER).
 
-            for (var h = 0; h < this.col.length; h++) {
-                // ADD TABLE HEADER.
-                var th = document.createElement('th');
-                th.innerHTML = this.col[h].replace('_', ' ');
+            for (let h = 0; h < this.empty.length; h++) {
+                let th = document.createElement('th');
+                th.innerHTML = this.empty[h];
                 tr.appendChild(th);
             }
 
-            // ADD ROWS USING JSON DATA.
+            // ADD ROWS
             for (var i = 0; i < this.myBooks.length; i++) {
 
                 tr = table.insertRow(-1);           // CREATE A NEW ROW.
 
-                for (var j = 0; j < this.col.length; j++) {
+                for (var j = 0; j < this.empty.length; j++) {
                     var tabCell = tr.insertCell(-1);
-                    tabCell.innerHTML = this.myBooks[i][this.col[j]];
+                    tabCell.innerHTML = this.myBooks[i][this.empty[j]];
                 }
 
                 // DYNAMICALLY CREATE AND ADD ELEMENTS TO TABLE CELLS WITH EVENTS.
@@ -58,7 +57,7 @@
                 tr.appendChild(this.td);
                 var lblCancel = document.createElement('label');
                 lblCancel.innerHTML = '✖';
-                lblCancel.setAttribute('onclick', 'crudApp.Cancel(this)');
+                lblCancel.setAttribute('onclick', 'booksApp.Cancel(this)');
                 lblCancel.setAttribute('style', 'display:none;');
                 lblCancel.setAttribute('title', 'Cancel');
                 lblCancel.setAttribute('id', 'lbl' + i);
@@ -72,7 +71,7 @@
                 btSave.setAttribute('value', 'Save');
                 btSave.setAttribute('id', 'Save' + i);
                 btSave.setAttribute('style', 'display:none;');
-                btSave.setAttribute('onclick', 'crudApp.Save(this)');       // ADD THE BUTTON's 'onclick' EVENT.
+                btSave.setAttribute('onclick', 'booksApp.Save(this)');       // ADD THE BUTTON's 'onclick' EVENT.
                 this.td.appendChild(btSave);
 
                 // *** UPDATE.
@@ -83,8 +82,18 @@
                 btUpdate.setAttribute('value', 'Update');
                 btUpdate.setAttribute('id', 'Edit' + i);
                 btUpdate.setAttribute('style', 'background-color:#44CCEB;');
-                btUpdate.setAttribute('onclick', 'crudApp.Update(this)');   // ADD THE BUTTON's 'onclick' EVENT.
+                btUpdate.setAttribute('onclick', 'booksApp.Update(this)');   // ADD THE BUTTON's 'onclick' EVENT.
                 this.td.appendChild(btUpdate);
+
+                // *** DELETE.
+                this.td = document.createElement('th');
+                tr.appendChild(this.td);
+                var btDelete = document.createElement('input');
+                btDelete.setAttribute('type', 'button');    // SET INPUT ATTRIBUTE.
+                btDelete.setAttribute('value', 'Delete');
+                btDelete.setAttribute('style', 'background-color:#ED5650;');
+                btDelete.setAttribute('onclick', 'booksApp.Delete(this)');   // ADD THE BUTTON's 'onclick' EVENT.
+                this.td.appendChild(btDelete);
             }
 
 
@@ -92,7 +101,7 @@
 
             tr = table.insertRow(-1);           // CREATE THE LAST ROW.
 
-            for (var j = 0; j < this.col.length; j++) {
+            for (var j = 0; j < this.empty.length; j++) {
                 var newCell = tr.insertCell(-1);
                 if (j >= 1) {
 
@@ -124,7 +133,7 @@
             btNew.setAttribute('value', 'Create');
             btNew.setAttribute('id', 'New' + i);
             btNew.setAttribute('style', 'background-color:#207DD1;');
-            btNew.setAttribute('onclick', 'crudApp.CreateNew(this)');       // ADD THE BUTTON's 'onclick' EVENT.
+            btNew.setAttribute('onclick', 'booksApp.CreateNew(this)');       // ADD THE BUTTON's 'onclick' EVENT.
             this.td.appendChild(btNew);
 
             var div = document.getElementById('container');
@@ -152,9 +161,9 @@
 
             var tab = document.getElementById('booksTable').rows[activeRow];
 
-            for (i = 0; i < this.col.length; i++) {
+            for (i = 0; i < this.empty.length; i++) {
                 var td = tab.getElementsByTagName("td")[i];
-                td.innerHTML = this.myBooks[(activeRow - 1)][this.col[i]];
+                td.innerHTML = this.myBooks[(activeRow - 1)][this.empty[i]];
             }
         }
 
@@ -211,10 +220,10 @@
             var tab = document.getElementById('booksTable').rows[activeRow];
 
             // UPDATE myBooks ARRAY WITH VALUES.
-            for (i = 1; i < this.col.length; i++) {
+            for (i = 1; i < this.empty.length; i++) {
                 var td = tab.getElementsByTagName("td")[i];
                 if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') {  // CHECK IF ELEMENT IS A TEXTBOX OR SELECT.
-                    this.myBooks[(activeRow - 1)][this.col[i]] = td.childNodes[0].value;      // SAVE THE VALUE.
+                    this.myBooks[(activeRow - 1)][this.empty[i]] = td.childNodes[0].value;      // SAVE THE VALUE.
                 }
             }
             this.createTable();     // REFRESH THE TABLE.
@@ -227,12 +236,12 @@
             var obj = {};
 
             // ADD NEW VALUE TO myBooks ARRAY.
-            for (i = 1; i < this.col.length; i++) {
+            for (i = 1; i < this.empty.length; i++) {
                 var td = tab.getElementsByTagName("td")[i];
                 if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') {      // CHECK IF ELEMENT IS A TEXTBOX OR SELECT.
                     var txtVal = td.childNodes[0].value;
                     if (txtVal != '') {
-                        obj[this.col[i]] = txtVal.trim();
+                        obj[this.empty[i]] = txtVal.trim();
                     }
                     else {
                         obj = '';
@@ -241,7 +250,7 @@
                     }
                 }
             }
-            obj[this.col[0]] = this.myBooks.length + 1;     // NEW ID.
+            obj[this.empty[0]] = this.myBooks.length + 1;     // NEW ID.
 
             if (Object.keys(obj).length > 0) {      // CHECK IF OBJECT IS NOT EMPTY.
                 this.myBooks.push(obj);             // PUSH (ADD) DATA TO THE JSON ARRAY.
