@@ -31,7 +31,7 @@
                 tr = table.insertRow();           // CREATE A NEW ROW.
                 for (var j = 0; j < this.header.length; j++) {
                     var tabCell = tr.insertCell();
-                    tabCell.innerHTML = this.myBooks[i][this.header[j]]; //ask about this!!!
+                    tabCell.innerHTML = this.myBooks[i][this.header[j]]; //GRABBING THE BOOKS ARRAY AT .TITLE, THEN .STARTED...
                 }
 
                 // DYNAMICALLY CREATE AND ADD ELEMENTS TO TABLE CELLS WITH EVENTS.
