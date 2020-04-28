@@ -120,7 +120,7 @@
             // ADD NEW VALUE TO myBooks ARRAY.
             for (let i = 0; i < this.header.length; i++) {
                 var td = tab.getElementsByTagName("td")[i];
-                if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') {      // CHECK IF ELEMENT IS A TEXTBOX OR SELECT.
+                if (td.childNodes[0].getAttribute('type') == 'text') {      // CHECK IF ELEMENT IS A TEXTBOX
                     var txtVal = td.childNodes[0].value;
                     if (txtVal != '') {
                         obj[this.header[i]] = txtVal.trim();
@@ -158,7 +158,7 @@
 
             var tab = document.getElementById('booksTable').rows[activeRow];
 
-            for (i = 0; i < this.header.length; i++) {
+            for (let i = 0; i < this.header.length; i++) {
                 var td = tab.getElementsByTagName("td")[i];
                 td.innerHTML = this.myBooks[(activeRow - 1)][this.header[i]];
             }
@@ -170,7 +170,7 @@
             var activeRow = button.parentNode.parentNode.rowIndex;
             var tab = document.getElementById('booksTable').rows[activeRow];
             for (let i = 1; i < 4; i++) {
-                if (i == 2) {
+                if (i == 2 || i === 3) {
                     var td = tab.getElementsByTagName("td")[i];
                     var ele = document.createElement('input');      // TEXTBOX.
                     ele.setAttribute('type', 'text');
@@ -179,7 +179,6 @@
                     td.appendChild(ele);
                 }
             }
-          }
 
             var lblCancel = document.getElementById('lbl' + (activeRow - 1));
             lblCancel.setAttribute('style', 'cursor:pointer; display:block; width:20px; float:left; position: absolute;');
@@ -205,14 +204,15 @@
             var tab = document.getElementById('booksTable').rows[activeRow];
 
             // UPDATE myBooks ARRAY WITH VALUES.
-            for (i = 1; i < this.header.length; i++) {
+            for (let i = 1; i < this.header.length; i++) {
                 var td = tab.getElementsByTagName("td")[i];
-                if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') {  // CHECK IF ELEMENT IS A TEXTBOX OR SELECT.
+                if (td.childNodes[0].getAttribute('type') == 'text') {  // CHECK IF ELEMENT IS A TEXTBOX
                     this.myBooks[(activeRow - 1)][this.header[i]] = td.childNodes[0].value;      // SAVE THE VALUE.
                 }
             }
             this.createTable();     // REFRESH THE TABLE.
         }
+      }
 
         // ****** OPERATIONS END.
     
