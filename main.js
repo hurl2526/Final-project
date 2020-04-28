@@ -31,54 +31,54 @@
                 tr = table.insertRow();           // CREATE A NEW ROW.
                 for (var j = 0; j < this.header.length; j++) {
                     var tabCell = tr.insertCell();
-                    tabCell.innerHTML = this.myBooks[i][this.header[j]]; //GRABBING THE BOOKS ARRAY AT .TITLE, THEN .STARTED...
+                    tabCell.innerHTML = this.myBooks[i][this.header[j]]; //GRABBING THE BOOKS ARRAY AT .TITLE, THEN .STARTED
                 }
 
                 // DYNAMICALLY CREATE AND ADD ELEMENTS TO TABLE CELLS WITH EVENTS.
 
-                // this.td = document.createElement('td');
+                this.td = document.createElement('td');
 
-                // // *** CANCEL OPTION.
-                // tr.appendChild(this.td);
-                // var lblCancel = document.createElement('label');
-                // lblCancel.innerHTML = '✖';
-                // lblCancel.setAttribute('onclick', 'booksApp.Cancel(this)');
-                // lblCancel.setAttribute('style', 'display:none;');
-                // lblCancel.setAttribute('title', 'Cancel');
-                // lblCancel.setAttribute('id', 'lbl' + i);
-                // this.td.appendChild(lblCancel);
+                // *** CANCEL OPTION.
+                tr.appendChild(this.td);
+                var lblCancel = document.createElement('label');
+                lblCancel.innerHTML = '✖';
+                lblCancel.setAttribute('onclick', 'booksApp.Cancel(this)');
+                lblCancel.setAttribute('style', 'display:none;');
+                lblCancel.setAttribute('title', 'Cancel');
+                lblCancel.setAttribute('id', 'lbl' + i);
+                this.td.appendChild(lblCancel);
 
-                // // *** SAVE.
-                // tr.appendChild(this.td);
-                // var btSave = document.createElement('input');
+                // *** SAVE.
+                tr.appendChild(this.td);
+                var btSave = document.createElement('input');
 
-                // btSave.setAttribute('type', 'button');      // SET ATTRIBUTES.
-                // btSave.setAttribute('value', 'Save');
-                // btSave.setAttribute('id', 'Save' + i);
-                // btSave.setAttribute('style', 'display:none;');
-                // btSave.setAttribute('onclick', 'booksApp.Save(this)');       // ADD THE BUTTON's 'onclick' EVENT.
-                // this.td.appendChild(btSave);
+                btSave.setAttribute('type', 'button');      // SET ATTRIBUTES.
+                btSave.setAttribute('value', 'Save');
+                btSave.setAttribute('id', 'Save' + i);
+                btSave.setAttribute('style', 'display:none;');
+                btSave.setAttribute('onclick', 'booksApp.Save(this)');       // ADD THE BUTTON's 'onclick' EVENT.
+                this.td.appendChild(btSave);
 
-                // // *** UPDATE.
-                // tr.appendChild(this.td);
-                // var btUpdate = document.createElement('input');
+                // *** UPDATE.
+                tr.appendChild(this.td);
+                var btUpdate = document.createElement('input');
 
-                // btUpdate.setAttribute('type', 'button');    // SET ATTRIBUTES.
-                // btUpdate.setAttribute('value', 'Update');
-                // btUpdate.setAttribute('id', 'Edit' + i);
-                // btUpdate.setAttribute('style', 'background-color:#44CCEB;');
-                // btUpdate.setAttribute('onclick', 'booksApp.Update(this)');   // ADD THE BUTTON's 'onclick' EVENT.
-                // this.td.appendChild(btUpdate);
+                btUpdate.setAttribute('type', 'button');    // SET ATTRIBUTES.
+                btUpdate.setAttribute('value', 'Update');
+                btUpdate.setAttribute('id', 'Edit' + i);
+                btUpdate.setAttribute('style', 'background-color:#44CCEB;');
+                btUpdate.setAttribute('onclick', 'booksApp.Update(this)');   // ADD THE BUTTON's 'onclick' EVENT.
+                this.td.appendChild(btUpdate);
 
-                // // *** DELETE.
-                // this.td = document.createElement('th');
-                // tr.appendChild(this.td);
-                // var btDelete = document.createElement('input');
-                // btDelete.setAttribute('type', 'button');    // SET INPUT ATTRIBUTE.
-                // btDelete.setAttribute('value', 'Delete');
-                // btDelete.setAttribute('style', 'background-color:#ED5650;');
-                // btDelete.setAttribute('onclick', 'booksApp.Delete(this)');   // ADD THE BUTTON's 'onclick' EVENT.
-                // this.td.appendChild(btDelete);
+                // *** DELETE.
+                this.td = document.createElement('th');
+                tr.appendChild(this.td);
+                var btDelete = document.createElement('input');
+                btDelete.setAttribute('type', 'button');    // SET INPUT ATTRIBUTE.
+                btDelete.setAttribute('value', 'Delete');
+                btDelete.setAttribute('style', 'background-color:#ED5650;');
+                btDelete.setAttribute('onclick', 'booksApp.Delete(this)');   // ADD THE BUTTON's 'onclick' EVENT.
+                this.td.appendChild(btDelete);
             }
 
                 // ADD A ROW AT THE END WITH BLANK TEXTBOXES AND A DROPDOWN LIST (FOR NEW ENTRY).
@@ -141,92 +141,80 @@
         // The Rubric says able to edit data but we never really went over how to edit very much so this code is all stolen to make the app more functional.
 
         // CANCEL.
-        // this.Cancel = function (button) {
+        this.Cancel = function (button) {
 
-        //     // HIDE THIS BUTTON.
-        //     button.setAttribute('style', 'display:none; float:none;');
+            // HIDE THIS BUTTON.
+            button.setAttribute('style', 'display:none; float:none;');
 
-        //     var activeRow = button.parentNode.parentNode.rowIndex;
+            var activeRow = button.parentNode.parentNode.rowIndex;
 
-        //     // HIDE THE SAVE BUTTON.
-        //     var btSave = document.getElementById('Save' + (activeRow - 1));
-        //     btSave.setAttribute('style', 'display:none;');
+            // HIDE THE SAVE BUTTON.
+            var btSave = document.getElementById('Save' + (activeRow - 1));
+            btSave.setAttribute('style', 'display:none;');
 
-        //     // SHOW THE UPDATE BUTTON AGAIN.
-        //     var btUpdate = document.getElementById('Edit' + (activeRow - 1));
-        //     btUpdate.setAttribute('style', 'display:block; margin:0 auto; background-color:#44CCEB;');
+            // SHOW THE UPDATE BUTTON AGAIN.
+            var btUpdate = document.getElementById('Edit' + (activeRow - 1));
+            btUpdate.setAttribute('style', 'display:block; margin:0 auto; background-color:#44CCEB;');
 
-        //     var tab = document.getElementById('booksTable').rows[activeRow];
+            var tab = document.getElementById('booksTable').rows[activeRow];
 
-        //     for (i = 0; i < this.header.length; i++) {
-        //         var td = tab.getElementsByTagName("td")[i];
-        //         td.innerHTML = this.myBooks[(activeRow - 1)][this.header[i]];
-        //     }
-        // }
+            for (i = 0; i < this.header.length; i++) {
+                var td = tab.getElementsByTagName("td")[i];
+                td.innerHTML = this.myBooks[(activeRow - 1)][this.header[i]];
+            }
+        }
 
 
-        // EDIT DATA.
-        // this.Update = function (button) {
-        //     var activeRow = button.parentNode.parentNode.rowIndex;
-        //     var tab = document.getElementById('booksTable').rows[activeRow];
+        //edit
+        this.Update = function (button) {
+            var activeRow = button.parentNode.parentNode.rowIndex;
+            var tab = document.getElementById('booksTable').rows[activeRow];
+            for (let i = 1; i < 4; i++) {
+                if (i == 2) {
+                    var td = tab.getElementsByTagName("td")[i];
+                    var ele = document.createElement('input');      // TEXTBOX.
+                    ele.setAttribute('type', 'text');
+                    ele.setAttribute('value', td.innerText);
+                    td.innerText = '';
+                    td.appendChild(ele);
+                }
+            }
+          }
 
-        //     // SHOW A DROPDOWN LIST WITH A LIST OF CATEGORIES.
-        //     for (i = 1; i < 4; i++) {
-        //         if (i == 2) {
-        //             var td = tab.getElementsByTagName("td")[i];
-        //             var ele = document.createElement('select');      // DROPDOWN LIST.
-        //             ele.innerHTML = '<option value="' + td.innerText + '">' + td.innerText + '</option>';
-        //             for (k = 0; k < this.category.length; k++) {
-        //                 ele.innerHTML = ele.innerHTML +
-        //                     '<option value="' + this.category[k] + '">' + this.category[k] + '</option>';
-        //             }
-        //             td.innerText = '';
-        //             td.appendChild(ele);
-        //         }
-        //         else {
-        //             var td = tab.getElementsByTagName("td")[i];
-        //             var ele = document.createElement('input');      // TEXTBOX.
-        //             ele.setAttribute('type', 'text');
-        //             ele.setAttribute('value', td.innerText);
-        //             td.innerText = '';
-        //             td.appendChild(ele);
-        //         }
-        //     }
+            var lblCancel = document.getElementById('lbl' + (activeRow - 1));
+            lblCancel.setAttribute('style', 'cursor:pointer; display:block; width:20px; float:left; position: absolute;');
 
-        //     var lblCancel = document.getElementById('lbl' + (activeRow - 1));
-        //     lblCancel.setAttribute('style', 'cursor:pointer; display:block; width:20px; float:left; position: absolute;');
+            var btSave = document.getElementById('Save' + (activeRow - 1));
+            btSave.setAttribute('style', 'display:block; margin-left:30px; float:left; background-color:#2DBF64;');
 
-        //     var btSave = document.getElementById('Save' + (activeRow - 1));
-        //     btSave.setAttribute('style', 'display:block; margin-left:30px; float:left; background-color:#2DBF64;');
-
-        //     // HIDE THIS BUTTON.
-        //     button.setAttribute('style', 'display:none;');
-        // };
+            // HIDE THIS BUTTON.
+            button.setAttribute('style', 'display:none;');
+        };
 
 
         // // DELETE DATA.
-        // this.Delete = function (button) {
-        //     var activeRow = button.parentNode.parentNode.rowIndex;
-        //     this.myBooks.splice((activeRow - 1), 1);    // DELETE THE ACTIVE ROW.
-        //     this.createTable();                         // REFRESH THE TABLE.
-        // };
+        this.Delete = function (button) {
+            var activeRow = button.parentNode.parentNode.rowIndex;
+            this.myBooks.splice((activeRow - 1), 1);    // DELETE THE ACTIVE ROW.
+            this.createTable();                         // REFRESH THE TABLE.
+        };
 
-        // // SAVE DATA.
-        // this.Save = function (button) {
-        //     var activeRow = button.parentNode.parentNode.rowIndex;
-        //     var tab = document.getElementById('booksTable').rows[activeRow];
+        // SAVE DATA.
+        this.Save = function (button) {
+            var activeRow = button.parentNode.parentNode.rowIndex;
+            var tab = document.getElementById('booksTable').rows[activeRow];
 
-        //     // UPDATE myBooks ARRAY WITH VALUES.
-        //     for (i = 1; i < this.header.length; i++) {
-        //         var td = tab.getElementsByTagName("td")[i];
-        //         if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') {  // CHECK IF ELEMENT IS A TEXTBOX OR SELECT.
-        //             this.myBooks[(activeRow - 1)][this.header[i]] = td.childNodes[0].value;      // SAVE THE VALUE.
-        //         }
-        //     }
-        //     this.createTable();     // REFRESH THE TABLE.
-        // }
+            // UPDATE myBooks ARRAY WITH VALUES.
+            for (i = 1; i < this.header.length; i++) {
+                var td = tab.getElementsByTagName("td")[i];
+                if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') {  // CHECK IF ELEMENT IS A TEXTBOX OR SELECT.
+                    this.myBooks[(activeRow - 1)][this.header[i]] = td.childNodes[0].value;      // SAVE THE VALUE.
+                }
+            }
+            this.createTable();     // REFRESH THE TABLE.
+        }
 
         // ****** OPERATIONS END.
-    }
+    
 
     booksApp.createTable();
