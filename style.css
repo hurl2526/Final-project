@@ -55,11 +55,10 @@
 
 .body{
   background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages5.alphacoders.com%2F389%2Fthumb-1920-389874.jpg&f=1&nofb=1);
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
 } 
-/* #container{
-  width: auto;
-} */
+
  * table 
         {
           background-color:#EBC98C;
