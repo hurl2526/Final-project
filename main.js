@@ -8,11 +8,11 @@
 
         // objects array
         this.myBooks = [
-            {Title: 'The Hobbit', Started: 'January', Pages: 125 , Rating: 5},
-            {Title: 'War and Peace', Started: 'February', Pages: 56, Rating: 5},
-            {Title: 'The Great Gatsby', Started: 'April', Pages: 210, Rating: 5 }
+            {Title: 'The Hobbit', Author: 'J. R. R. Tolkien', Started: 'January', Pages: 125 , Rating: 6},
+            {Title: 'War and Peace', Author: 'J. R. R. Tolkien', Started: 'February', Pages: 56, Rating: 8},
+            {Title: 'The Great Gatsby', Author: 'J. R. R. Tolkien', Started: 'April', Pages: 210, Rating: 7 }
         ]
-        this.header = ['Title', 'Started', 'Pages', 'Rating'];
+        this.header = ['Title', 'Author', 'Started', 'Pages', 'Rating'];
 
               // CREATE A TABLE.
             this.createTable = function () {
@@ -169,8 +169,8 @@
         this.Update = function (button) {
             let activeRow = button.parentNode.parentNode.rowIndex;
             let tab = document.getElementById('booksTable').rows[activeRow];
-            for (let i = 1; i < 4; i++) {
-                if (i == 2 || i === 3) {
+            for (let i = 1; i < 5; i++) {
+                if (i == 3 || i === 4) {
                     let td = tab.getElementsByTagName("td")[i];
                     let ele = document.createElement('input');      // TEXTBOX.
                     ele.setAttribute('type', 'text');

@@ -16,23 +16,40 @@
 #title{
   font-size: 2em;
   font-weight: bold;
+  margin-left: 2em;
+  margin-right: 4em;
 }
 #author{
   font-size: 2em;
-  font-weight: bold;
+  font-family: cursive;
+  margin-right: 2em;
+}
+
+@media (max-width: 600px){
+  #title{
+    font-size: 2em;
+    font-weight: bold;
+    margin-left: .5em;
+    margin-right: 2em;
+  }
+  #author{
+    font-size: 2em;
+    font-family: cursive;
+    margin-right: .5em;
+  }
 }
 
 .body{
-  background-image: url(https://cdn.wallpapersafari.com/32/65/vYN5Xm.jpg);
+  background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages5.alphacoders.com%2F389%2Fthumb-1920-389874.jpg&f=1&nofb=1);
   background-size: 100%;
 } 
-#container{
-  background-color: white;
-}
- 
+/* #container{
+  width: auto;
+} */
  * table 
         {
-            width: 100%;
+          background-color:#EBC98C;
+            width: 65%;
             font: 17px;
         }
         table, th, td 
@@ -41,6 +58,7 @@
             border-collapse: collapse;
             padding: 2px 3px;
             text-align: center;
+            word-wrap: break-word;
         }
       
         input[type='button'] 
