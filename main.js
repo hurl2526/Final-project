@@ -27,10 +27,10 @@
             }
 
             // ADD ROWS
-            for (var i = 0; i < this.myBooks.length; i++) {
+            for (let i = 0; i < this.myBooks.length; i++) {
                 tr = table.insertRow();           // CREATE A NEW ROW.
-                for (var j = 0; j < this.header.length; j++) {
-                    var tabCell = tr.insertCell();
+                for (let j = 0; j < this.header.length; j++) {
+                    let tabCell = tr.insertCell();
                     tabCell.innerHTML = this.myBooks[i][this.header[j]]; //GRABBING THE BOOKS ARRAY AT .TITLE, THEN .STARTED
                 }
 
@@ -40,7 +40,7 @@
 
                 // *** CANCEL OPTION.
                 tr.appendChild(this.td);
-                var lblCancel = document.createElement('label');
+                let lblCancel = document.createElement('label');
                 lblCancel.innerHTML = '✖';
                 lblCancel.setAttribute('onclick', 'booksApp.Cancel(this)');
                 lblCancel.setAttribute('style', 'display:none;');
@@ -50,7 +50,7 @@
 
                 // *** SAVE.
                 tr.appendChild(this.td);
-                var btSave = document.createElement('input');
+                let btSave = document.createElement('input');
 
                 btSave.setAttribute('type', 'button');      // SET ATTRIBUTES.
                 btSave.setAttribute('value', 'Save');
@@ -61,7 +61,7 @@
 
                 // *** UPDATE.
                 tr.appendChild(this.td);
-                var btUpdate = document.createElement('input');
+                let btUpdate = document.createElement('input');
 
                 btUpdate.setAttribute('type', 'button');    // SET ATTRIBUTES.
                 btUpdate.setAttribute('value', 'Update');
@@ -73,7 +73,7 @@
                 // *** DELETE.
                 this.td = document.createElement('th');
                 tr.appendChild(this.td);
-                var btDelete = document.createElement('input');
+                let btDelete = document.createElement('input');
                 btDelete.setAttribute('type', 'button');    // SET INPUT ATTRIBUTE.
                 btDelete.setAttribute('value', 'Delete');
                 btDelete.setAttribute('style', 'background-color:#ED5650;');
@@ -85,10 +85,10 @@
 
                 tr = table.insertRow();           // CREATE THE LAST ROW.
 
-                for (var j = 0; j < this.header.length; j++) {
-                    var newCell = tr.insertCell();
+                for (let j = 0; j < this.header.length; j++) {
+                    let newCell = tr.insertCell();
                     if (j >= 0) {
-                            var tBox = document.createElement('input');          // CREATE AND ADD A TEXTBOX.
+                            let tBox = document.createElement('input');          // CREATE AND ADD A TEXTBOX.
                             tBox.setAttribute('type', 'text');
                             tBox.setAttribute('value', '');
                             newCell.appendChild(tBox);
@@ -98,7 +98,7 @@
                 this.td = document.createElement('td');
                 tr.appendChild(this.td);
     
-                var btNew = document.createElement('input');
+                let btNew = document.createElement('input');
     
                 btNew.setAttribute('type', 'button');       // SET ATTRIBUTES.
                 btNew.setAttribute('value', 'Create');
@@ -106,22 +106,22 @@
                 btNew.setAttribute('onclick', 'booksApp.CreateNew(this)');       // ADD THE BUTTON's 'onclick' EVENT.
                 this.td.appendChild(btNew);
     
-                var div = document.getElementById('container');
+                let div = document.getElementById('container');
                 div.innerHTML = '';
                 div.appendChild(table);
             };
 
             // CREATE NEW FUNCTION. Ask for help with this!!!!
         this.CreateNew = function (button) {
-            var activeRow = button.parentNode.parentNode.rowIndex;
-            var tab = document.getElementById('booksTable').rows[activeRow];
-            var obj = {};
+            let activeRow = button.parentNode.parentNode.rowIndex;
+            let tab = document.getElementById('booksTable').rows[activeRow];
+            let obj = {};
 
             // ADD NEW VALUE TO myBooks ARRAY.
             for (let i = 0; i < this.header.length; i++) {
-                var td = tab.getElementsByTagName("td")[i];
+                let td = tab.getElementsByTagName("td")[i];
                 if (td.childNodes[0].getAttribute('type') == 'text') {      // CHECK IF ELEMENT IS A TEXTBOX
-                    var txtVal = td.childNodes[0].value;
+                    let txtVal = td.childNodes[0].value;
                     if (txtVal != '') {
                         obj[this.header[i]] = txtVal.trim();
                     }
@@ -146,20 +146,20 @@
             // HIDE THIS BUTTON.
             button.setAttribute('style', 'display:none; float:none;');
 
-            var activeRow = button.parentNode.parentNode.rowIndex;
+            let activeRow = button.parentNode.parentNode.rowIndex;
 
             // HIDE THE SAVE BUTTON.
-            var btSave = document.getElementById('Save' + (activeRow - 1));
+            let btSave = document.getElementById('Save' + (activeRow - 1));
             btSave.setAttribute('style', 'display:none;');
 
             // SHOW THE UPDATE BUTTON AGAIN.
-            var btUpdate = document.getElementById('Edit' + (activeRow - 1));
+            let btUpdate = document.getElementById('Edit' + (activeRow - 1));
             btUpdate.setAttribute('style', 'display:block; margin:0 auto; background-color:#44CCEB;');
 
-            var tab = document.getElementById('booksTable').rows[activeRow];
+            let tab = document.getElementById('booksTable').rows[activeRow];
 
             for (let i = 0; i < this.header.length; i++) {
-                var td = tab.getElementsByTagName("td")[i];
+                let td = tab.getElementsByTagName("td")[i];
                 td.innerHTML = this.myBooks[(activeRow - 1)][this.header[i]];
             }
         }
@@ -167,12 +167,12 @@
 
         //edit
         this.Update = function (button) {
-            var activeRow = button.parentNode.parentNode.rowIndex;
-            var tab = document.getElementById('booksTable').rows[activeRow];
+            let activeRow = button.parentNode.parentNode.rowIndex;
+            let tab = document.getElementById('booksTable').rows[activeRow];
             for (let i = 1; i < 4; i++) {
                 if (i == 2 || i === 3) {
-                    var td = tab.getElementsByTagName("td")[i];
-                    var ele = document.createElement('input');      // TEXTBOX.
+                    let td = tab.getElementsByTagName("td")[i];
+                    let ele = document.createElement('input');      // TEXTBOX.
                     ele.setAttribute('type', 'text');
                     ele.setAttribute('value', td.innerText);
                     td.innerText = '';
@@ -180,10 +180,10 @@
                 }
             }
 
-            var lblCancel = document.getElementById('lbl' + (activeRow - 1));
+            let lblCancel = document.getElementById('lbl' + (activeRow - 1));
             lblCancel.setAttribute('style', 'cursor:pointer; display:block; width:20px; float:left; position: absolute;');
 
-            var btSave = document.getElementById('Save' + (activeRow - 1));
+            let btSave = document.getElementById('Save' + (activeRow - 1));
             btSave.setAttribute('style', 'display:block; margin-left:30px; float:left; background-color:#2DBF64;');
 
             // HIDE THIS BUTTON.
@@ -193,19 +193,19 @@
 
         // // DELETE DATA.
         this.Delete = function (button) {
-            var activeRow = button.parentNode.parentNode.rowIndex;
+            let activeRow = button.parentNode.parentNode.rowIndex;
             this.myBooks.splice((activeRow - 1), 1);    // DELETE THE ACTIVE ROW.
             this.createTable();                         // REFRESH THE TABLE.
         };
 
         // SAVE DATA.
         this.Save = function (button) {
-            var activeRow = button.parentNode.parentNode.rowIndex;
-            var tab = document.getElementById('booksTable').rows[activeRow];
+            let activeRow = button.parentNode.parentNode.rowIndex;
+            let tab = document.getElementById('booksTable').rows[activeRow];
 
             // UPDATE myBooks ARRAY WITH VALUES.
             for (let i = 1; i < this.header.length; i++) {
-                var td = tab.getElementsByTagName("td")[i];
+                let td = tab.getElementsByTagName("td")[i];
                 if (td.childNodes[0].getAttribute('type') == 'text') {  // CHECK IF ELEMENT IS A TEXTBOX
                     this.myBooks[(activeRow - 1)][this.header[i]] = td.childNodes[0].value;      // SAVE THE VALUE.
                 }

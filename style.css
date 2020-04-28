@@ -1,11 +1,43 @@
+.top-bar{
+  color:#E1C68E;
+  background-color: #8E1D18;
+  height: 6em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  margin-bottom: 5em;
+}
+/* #left-stripe1{
+  background-color: #E1C68E;
+  height: 6em;
+  widows: 1em;
+} */
+#title{
+  font-size: 2em;
+  font-weight: bold;
+}
+#author{
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.body{
+  background-image: url(https://cdn.wallpapersafari.com/32/65/vYN5Xm.jpg);
+  background-size: 100%;
+} 
+#container{
+  background-color: white;
+}
+ 
  * table 
         {
             width: 100%;
-            font: 17px Calibri;
+            font: 17px;
         }
         table, th, td 
         {
-            border: solid 1px #DDD;
+            border: solid .5px black;
             border-collapse: collapse;
             padding: 2px 3px;
             text-align: center;
@@ -13,7 +45,7 @@
       
         input[type='button'] 
         {
-            font: 15px Calibri;
+            font: 15px;
             cursor: pointer;
             border: none;
             color: #FFF;
@@ -21,7 +53,7 @@
         
         input[type='text'], select 
         {
-            font: 17px Calibri;
+            font: 17px;
             text-align: center;
             border: solid 1px #CCC;
             width: auto;
