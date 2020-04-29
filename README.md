@@ -15,27 +15,21 @@ The following features are available in this app:
 
 # Tools and techniques used 
 
-This application mainly utilized table making techniques in Javascript. 
+This application mainly utilized table making techniques in Javascript.  
 
-These functions were written using three primary methods:  
-1. Map
-2. Filter
-3. Sort
+Elements were added to the table cells dynamically using events.
 
-  Basic HTML was used and classes were added for DOM manipulation using documentQuerySelector.    
+Basic HTML was used and classes were added for DOM manipulation using documentQuerySelector.    
 
-  The styling was added using simple CSS properties with some additional flexbox features for layout.  
-
-  None of these tools were new to me as we have excellent instructors that walked us through each of these methods on previous assignments.   
+The styling was added using simple CSS properties with some additional flexbox features for layout.    
 
 # Where the app is hosted.  
-No need to download this application. It is currently being hosted at https://hurl2526.github.io/todata/ for anyone to use!
+No need to download this application. It is currently being hosted at ... for anyone to use!
 
 # Contributors
 
 @hurl2526 📖
 
-Also a special thanks to classmates and instructors for inspiration and guidance with completing this project!
 
 ### Contact
 If you want to contact me you can reach me at patrick.hurley@codeimmersives.com
