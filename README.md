@@ -25,6 +25,14 @@ The styling was added using simple CSS properties with some additional flexbox f
 
 # Challenges  
 
+The first hurdle was learning the logic behind creating tables in JS. Once I had a firm grasp on that I was able to make the table dynamically and create a new row but was still having major issues with editing the rows already created, specifically with how to target the current row and data based on the button pressed. After much research and help from instructors I was able to overcome these obstacles and make it possible to edit the amount of pages read, making the app fully capable of what I wanted it to do.  
+
+# Future Features  
+
+* Add more columns, possibly for a rating and a picture of the book cover. 
+* Make the book titles clickable, bringing you to a separate page based on that book. This would be a place where the user could paste favorite quotes from the book. 
+* Possibly ditch the whole table idea and use a grid so that the app is easier to manipulate and scale. 
+* Add some more styling to the app so that the table is within the book in the background. 
 
 # Where the app is hosted.  
 No need to download this application. It is currently being hosted at https://hurl2526.github.io/Final-project/ for anyone to use!
