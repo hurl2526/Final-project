@@ -181,7 +181,6 @@ const booksApp = new function () {
 
   //edit
   this.Update = function (button) {
-    console.dir(button);
     let activeRow = button.parentNode.parentNode.rowIndex;
     let tab = document.getElementById('booksTable').rows[activeRow];
     for (let i = 1; i < 4; i++) {
