@@ -113,7 +113,7 @@ const booksApp = new function () {
     btNew.setAttribute('type', 'button'); // SET ATTRIBUTES.
     btNew.setAttribute('value', 'Create');
     btNew.setAttribute('style', 'background-color:#207DD1;');
-    btNew.setAttribute('onclick', 'booksApp.CreateNew(this)'); // ADD THE BUTTON's 'onclick' EVENT.
+    btNew.setAttribute('onclick', 'booksApp.CreateNew(this)'); // ADD THE BUTTON's ONCLICK EVENT.
     this.td.appendChild(btNew);
 
     let div = document.getElementById('container');
@@ -121,7 +121,7 @@ const booksApp = new function () {
     div.appendChild(table);
   }; //END OF CREATE TABLE FUNCTION
 
-  // CREATE NEW FUNCTION. Ask for help with this!!!!
+  // CREATE NEW FUNCTION
   this.CreateNew = function (button) {
     let activeRow = button.parentNode.parentNode.rowIndex;
     let tab = document.getElementById('booksTable').rows[activeRow];
@@ -139,11 +139,9 @@ const booksApp = new function () {
         obj = '';
         alert('must fill out all fields');
         break;
-
       }
     }
     if (obj !== '') {
-
       this.myBooks.push(obj); // PUSH DATA TO THE ARRAY.
     }
     this.createTable(); // REFRESH THE TABLE.
@@ -151,13 +149,14 @@ const booksApp = new function () {
 
   // CANCEL.
   this.Cancel = function (button) {
+    let activeRow = button.parentNode.parentNode.rowIndex;
+    
     let cancel = document.getElementById('cancel' + (activeRow - 1));
     cancel.setAttribute('style', 'cursor:pointer; display:block; width:20px; float:left; position: absolute;');
 
     // HIDE THIS BUTTON.
     button.setAttribute('style', 'display:none; float:none;');
 
-    let activeRow = button.parentNode.parentNode.rowIndex;
 
     // HIDE THE SAVE BUTTON.
     let save = document.getElementById('Save' + (activeRow - 1));
@@ -172,7 +171,6 @@ const booksApp = new function () {
     for (let i = 0; i < this.header.length; i++) {
       let td = tab.getElementsByTagName("td")[i];
       td.innerHTML = this.myBooks[(activeRow - 1)][this.header[i]];
-
     }
   };
   //edit
@@ -180,7 +178,7 @@ const booksApp = new function () {
     let activeRow = button.parentNode.parentNode.rowIndex;
     let tab = document.getElementById('booksTable').rows[activeRow];
     for (let i = 1; i < 4; i++) {
-      if (i == 3 || i === 4) {
+      if (i == 3) {
         let td = tab.getElementsByTagName("td")[i];
         let ele = document.createElement('input'); // TEXTBOX.
         ele.setAttribute('type', 'text');
@@ -189,7 +187,6 @@ const booksApp = new function () {
         td.appendChild(ele);
       }
     }
-
     let cancel = document.getElementById('cancel' + (activeRow - 1));
     cancel.setAttribute('style', 'cursor:pointer; display:block; width:20px; float:left; position: absolute;');
 
@@ -198,36 +195,13 @@ const booksApp = new function () {
 
     // HIDE THIS BUTTON.
     button.setAttribute('style', 'display:none;');
-  };
-  this.Update = function (button) {
-    let activeRow = button.parentNode.parentNode.rowIndex;
-    let tab = document.getElementById('booksTable').rows[activeRow];
-    for (let i = 1; i < 4; i++) {
-      if (i == 3 || i === 4) {
-        let td = tab.getElementsByTagName("td")[i];
-        let ele = document.createElement('input'); // TEXTBOX.
-        ele.setAttribute('type', 'text');
-        ele.setAttribute('value', td.innerText);
-        td.innerText = '';
-        td.appendChild(ele);
-      }
-    }
-
-    let cancel = document.getElementById('cancel' + (activeRow - 1));
-    cancel.setAttribute('style', 'cursor:pointer; display:block; width:20px; float:left; position: absolute;');
-
-    let save = document.getElementById('Save' + (activeRow - 1));
-    save.setAttribute('style', 'display:block; margin-left:30px; float:left; background-color:#2DBF64;');
-
-    // HIDE THIS BUTTON.
-    button.setAttribute('style', 'display:none;');
-  };
+  }
 
   // // DELETE DATA.
   this.Delete = function (button) {
     let activeRow = button.parentNode.parentNode.rowIndex;
     this.myBooks.splice((activeRow - 1), 1); // DELETE THE ACTIVE ROW.
-    createTable(); // REFRESH THE TABLE.
+    this.createTable(); // REFRESH THE TABLE.
   };
 
   // SAVE DATA.
@@ -242,6 +216,7 @@ const booksApp = new function () {
         this.createTable(); // REFRESH THE TABLE.
       }
     }
+    this.createTable(); 
   };
 };
 
