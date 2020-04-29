@@ -24,7 +24,7 @@ Basic HTML was used and classes were added for DOM manipulation using documentQu
 The styling was added using simple CSS properties with some additional flexbox features for layout.    
 
 # Where the app is hosted.  
-No need to download this application. It is currently being hosted at ... for anyone to use!
+No need to download this application. It is currently being hosted at https://hurl2526.github.io/Final-project/ for anyone to use!
 
 # Contributors
 
